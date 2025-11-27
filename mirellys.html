@@ -270,16 +270,6 @@ header.main-header {
           <p>Registra suas melhores pontuações — atualizado automaticamente</p>
         </div>
         <div style="margin-top:8px;">
-  <label for="themeSelect" style="color:var(--muted);font-size:0.85rem;">Tema do site:</label>
-  <select id="themeSelect" class="pill" style="width:auto;padding:8px 12px;margin-left:6px;">
-    <option value="verde">🟢 Verde</option>
-    <option value="roxo">🟣 Roxo</option>
-    <option value="azul">🔵 Azul</option>
-    <option value="vermelho">🔴 Vermelho</option>
-    <option value="amarelo">🟡 Amarelo</option>
-    <option value="azulFuturista">🪙 Golden Pulse</option>
-    <option value="code">📗 Code</option>
-  </select>
 </div>
       </div>
     </header>
@@ -516,47 +506,11 @@ document.querySelector("#buscaMusica").addEventListener("input", aplicarFiltros)
 // 🎨 Temas disponíveis — cada um com cor principal e fundo escuro próprio
 const temas = {
   verde: {
-    cor: "#BFFF3B",
-    fundo1: "#381929",
-    fundo2: "#2C1120",
-    fundo3: "#1A0A12"
+    cor: "#FC578B",
+    fundo1: "#672B45",
+    fundo2: "#852137",
+    fundo3: "#9A3B18"
   },
-  roxo: {
-  cor: "#C39BFF",         // roxo pastel
-  fundo1: "#183033",      // verde-azulado escuro
-  fundo2: "#122326",
-  fundo3: "#0C1719"
-},
-  azul: {
-  cor: "#47B8FF",         // azul ciano
-  fundo1: "#361D14",      // laranja queimado
-  fundo2: "#2A150E",
-  fundo3: "#1A0D09"
-},
-  vermelho: {
-  cor: "#FF6F91",         // rosa avermelhado
-  fundo1: "#0E193B",      // azul escuro
-  fundo2: "#0A132A",
-  fundo3: "#050A1A"
-},
-  amarelo: {
-    cor: "#F2D546",
-    fundo1: "#2F103B",
-    fundo2: "#1E0A26",
-    fundo3: "#100514"
-  },
-    azulFuturista: {
-    cor: "#E5C029",
-    fundo1: "#271639",
-    fundo2: "#71221F",
-    fundo3: "#5E1F71"
-  },
-  code: {
-    cor: "#3BFF38",
-    fundo1: "#131313",
-    fundo2: "#030303",
-    fundo3: "#011301"
-  }
 };
 
 function aplicarTema(nome) {
