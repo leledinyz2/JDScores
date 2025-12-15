@@ -284,9 +284,9 @@ header.main-header {
 
 #senhaBox {
     background: #5a29ff; /* roxo forte */
-    padding: 30px;
+    padding: 50px;
     border-radius: 20px;
-    width: 500px;
+    width: 800px;
     text-align: center;
     box-shadow: 0 0 20px #0008;
 }
@@ -337,7 +337,7 @@ header.main-header {
 <div id="senhaOverlay">
   <div id="senhaBox">
     <h2>Digite a senha</h2>
-    <input type="password" id="senhaInput" placeholder="Senha...">
+    <input type="password" id="senhaInput" placeholder="Senha... Dica: My Babys">
     <button id="senhaBtn">Entrar</button>
     <p id="senhaErro">Senha incorreta</p>
   </div>
@@ -665,7 +665,7 @@ aplicarTema("verde");
 </script>
   <script>
 // senha que você quer
-const senhaCorreta = "jdleleny";
+const senhaCorreta = "bluecooky";
 
 document.getElementById("senhaBtn").onclick = () => {
     const senha = document.getElementById("senhaInput").value;
