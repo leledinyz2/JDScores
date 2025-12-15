@@ -271,6 +271,20 @@ header.main-header {
 </style>
 </head>
 <body>
+  <script>
+// ==============================
+// POPUP DE SENHA SIMPLES
+// ==============================
+
+// senha que você quer
+const senhaCorreta = "jdleleny";
+
+let tentativa = prompt("Digite a senha para acessar:");
+
+if (tentativa !== senhaCorreta) {
+    document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:40px;font-family:sans-serif'>Senha incorreta ❌</h1>";
+}
+</script>
   <div class="page">
 
     <!-- Header -->
