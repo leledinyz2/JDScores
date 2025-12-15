@@ -268,23 +268,80 @@ header.main-header {
   margin-left: 15px;
   cursor: pointer;
   }
+  #senhaOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 12, 12, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+#senhaBox {
+    background: #5a29ff; /* roxo forte */
+    padding: 30px;
+    border-radius: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 20px #0008;
+}
+
+#senhaBox h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+#senhaBox input {
+    width: 90%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    outline: none;
+    background: #eae4ff;
+}
+
+#senhaBox button {
+    margin-top: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: var(--accent-lime);
+    color: #181818;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+#senhaBox button:hover {
+    filter: brightness(1.1);
+}
+
+#senhaErro {
+    color: #ff9aa7;
+    font-size: 14px;
+    display: none;
+    margin-top: 8px;
+}
 </style>
 </head>
 <body>
-  <script>
-// ==============================
-// POPUP DE SENHA SIMPLES
-// ==============================
-
-// senha que você quer
-const senhaCorreta = "jdleleny";
-
-let tentativa = prompt("Digite a senha para acessar:");
-
-if (tentativa !== senhaCorreta) {
-    document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:40px;font-family:sans-serif'>Senha incorreta ❌</h1>";
-}
-</script>
+<div id="senhaOverlay">
+  <div id="senhaBox">
+    <h2>Digite a senha</h2>
+    <input type="password" id="senhaInput" placeholder="Senha...">
+    <button id="senhaBtn">Entrar</button>
+    <p id="senhaErro">Senha incorreta</p>
+  </div>
+</div>
   <div class="page">
 
     <!-- Header -->
@@ -605,6 +662,21 @@ document.getElementById("themeSelect").addEventListener("change", (e) => {
 });
 
 aplicarTema("verde");
+</script>
+  <script>
+// senha que você quer
+const senhaCorreta = "jdleleny";
+
+document.getElementById("senhaBtn").onclick = () => {
+    const senha = document.getElementById("senhaInput").value;
+
+    if (senha === senhaCorreta) {
+        document.getElementById("senhaOverlay").style.display = "none";
+    } else {
+        document.getElementById("senhaErro").style.display = "block";
+        document.getElementById("senhaInput").value = "";
+    }
+};
 </script>
 </body>
 </html>
