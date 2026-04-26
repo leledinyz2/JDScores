@@ -266,14 +266,17 @@
         </select>
       </div>
       <div class="filter-group">
-        <label>⭐ Pontuação (Estrelas)</label>
+        <label>⭐ Pontuação</label>
         <select id="filtroPontuacao">
           <option value="">Todas as Pontuações</option>
-          <option value="1">1 Estrela</option>
-          <option value="2">2 Estrelas</option>
-          <option value="3">3 Estrelas</option>
-          <option value="4">4 Estrelas</option>
-          <option value="5">5 Estrelas</option>
+          <option value="1">1⭐: 2000-4000</option>
+          <option value="2">2⭐: 4000-6000</option>
+          <option value="3">3⭐: 6000-8000</option>
+          <option value="4">4⭐: 8000-10000</option>
+          <option value="5">5⭐: 10000-11000</option>
+          <option value="superstar">Superstar🩵: 11000-12000</option>
+          <option value="megastar">Megastar🩷: 12000-13000</option>
+          <option value="ultrastar">Ultrastar💚: +13000</option>
         </select>
       </div>
       <div class="filter-group">
@@ -365,17 +368,29 @@ function detectColumns(headers) {
   };
 }
 
-function countStars(estrelasStr) {
-  if (!estrelasStr) return 0;
-  const stars = estrelasStr.match(/[💚🩷🩵💛⭐🌟★]/g);
-  return stars ? stars.length : 0;
+function getScoreValue(pontuacaoStr) {
+  if (!pontuacaoStr) return 0;
+  const num = parseFloat(pontuacaoStr.replace(/[^\d.,]/g, "").replace(",", "."));
+  return isNaN(num) ? 0 : num;
+}
+
+function getPontuacaoCategory(score) {
+  if (score >= 13000) return "ultrastar";
+  if (score >= 12000) return "megastar";
+  if (score >= 11000) return "superstar";
+  if (score >= 10000) return "5";
+  if (score >= 8000) return "4";
+  if (score >= 6000) return "3";
+  if (score >= 4000) return "2";
+  if (score >= 2000) return "1";
+  return null;
 }
 
 function renderTop10(dados, cols) {
   const top10 = [...dados]
     .map(d => {
-      const score = parseFloat((d[cols.pontuacao] || "").replace(/[^\d.,]/g, "").replace(",", "."));
-      return { ...d, scoreVal: isNaN(score) ? 0 : score };
+      const score = getScoreValue(d[cols.pontuacao]);
+      return { ...d, scoreVal: score };
     })
     .sort((a, b) => b.scoreVal - a.scoreVal)
     .slice(0, 10);
@@ -416,15 +431,38 @@ function exibirTabela(dados, cols) {
 function updateStats(dados, cols) {
   document.getElementById("totalSongs").textContent = dados.length;
   
-  const scores = dados.map(d => parseFloat((d[cols.pontuacao] || "").replace(/[^\d.,]/g, "").replace(",", "."))).filter(v => !isNaN(v));
+  const scores = dados.map(d => getScoreValue(d[cols.pontuacao])).filter(v => v > 0);
   document.getElementById("avgScore").textContent = scores.length ? Math.max(...scores).toLocaleString() : "0";
 
-  let maxStars = "";
+  let maxScore = 0;
+  let maxStarStr = "—";
   dados.forEach(d => {
-    const s = d[cols.estrelas] || "";
-    if (countStars(s) > countStars(maxStars)) maxStars = s;
+    const score = getScoreValue(d[cols.pontuacao]);
+    if (score > maxScore) {
+      maxScore = score;
+      maxStarStr = d[cols.estrelas] || "—";
+    }
   });
-  document.getElementById("topStar").textContent = maxStars || "—";
+  document.getElementById("topStar").textContent = maxStarStr;
+}
+
+function sortVersions(versions) {
+  const numVersions = [];
+  const yearVersions = [];
+
+  versions.forEach(v => {
+    const num = parseInt(v);
+    if (!isNaN(num) && num < 100) {
+      numVersions.push(num);
+    } else {
+      yearVersions.push(v);
+    }
+  });
+
+  numVersions.sort((a, b) => a - b);
+  yearVersions.sort((a, b) => a - b);
+
+  return [...numVersions.map(String), ...yearVersions];
 }
 
 function preencherFiltros(dados, cols) {
@@ -439,7 +477,8 @@ function preencherFiltros(dados, cols) {
   const selectVersao = document.getElementById("filtroVersao");
   const selectJogo = document.getElementById("filtroJogo");
 
-  Array.from(versoes).sort().forEach(v => {
+  const sortedVersions = sortVersions(Array.from(versoes));
+  sortedVersions.forEach(v => {
     const option = document.createElement("option");
     option.value = v;
     option.textContent = v;
@@ -464,7 +503,13 @@ function aplicarFiltros() {
     const nomeMatch = (d[COLS.musica] || "").toLowerCase().includes(busca);
     const versaoMatch = !versao || (d[COLS.versao] || "") === versao;
     const jogoMatch = !jogo || (d[COLS.jogo] || "") === jogo;
-    const pontuacaoMatch = !pontuacao || countStars(d[COLS.estrelas]) === parseInt(pontuacao);
+    
+    let pontuacaoMatch = true;
+    if (pontuacao) {
+      const score = getScoreValue(d[COLS.pontuacao]);
+      const category = getPontuacaoCategory(score);
+      pontuacaoMatch = category === pontuacao;
+    }
 
     return nomeMatch && versaoMatch && jogoMatch && pontuacaoMatch;
   });
