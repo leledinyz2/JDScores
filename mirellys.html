@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>🎵 Placar Just Dance da Mirelly 🎵</title>
+<title>🎵 Placar Just Dance do Lele 🎵</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/6373/6373791.png">
@@ -11,352 +11,307 @@
 
 <style>
   :root {
-  /* Cores de fundo — trocadas dinamicamente pelo tema */
-  --bg-deep: #9c3f5f;  /* topo */
-  --bg-mid: #8e315c;   /* meio */
-  --bg-low: #472536;   /* base */
-
-  /* Efeitos visuais */
-  --glass: rgba(255,255,255,0.04);
-  --glass-2: rgba(255,255,255,0.06);
-
-  /* Cor de destaque */
-  --accent-lime: #ff709d;
-  --accent-soft: rgba(255, 59, 118, 0.12);
-
-  /* Outros */
-  --card: rgba(12,8,20,0.6);
-  --text: #eef0f6;
-  --muted: #cfcfe0;
-  --shadow-dark: rgba(10,7,20,0.7);
-  --neum-inset: rgba(0,0,0,0.45);
-}
-
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:
-    radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent 8%),
-    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 30%, var(--bg-low) 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:28px;
-  transition: background 0.8s ease, color 0.3s ease;
+    --bg-deep: #1a1a2e;
+    --bg-mid: #16213e;
+    --bg-low: #0f3460;
+    --accent-pink: #ff2e63;
+    --accent-lime: #bfff3b;
+    --text: #eef0f6;
+    --muted: #cfcfe0;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
   }
 
-  /* page wrapper */
-  .page {
-    max-width:1100px;
-    margin:20px auto;
-    display:grid;
-    gap:20px;
-    grid-template-columns: 1fr;
-  }
-
-  /* header (glass + neumorphism) */
-  header.main-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:18px 22px;
-    border-radius:20px;
-    position:relative;
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.04);
-    backdrop-filter: blur(8px) saturate(140%);
-    box-shadow:
-      10px 14px 30px rgba(0,0,0,0.5),
-      inset -6px -6px 18px rgba(255,255,255,0.02);
-  }
-
-  .brand {
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  .logo-circle{
-    width:56px;height:56px;border-radius:12px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
-    border:1px solid rgba(255,255,255,0.03);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;color:var(--accent-lime);
-    font-size:20px;
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4), inset -6px -6px 14px rgba(255,255,255,0.02);
-  }
-  .title-area h1{margin:0;font-size:1.15rem;letter-spacing:0.2px}
-  .title-area p{margin:2px 0 0 0;color:var(--muted);font-size:0.88rem}
-
-  .header-actions{display:flex;gap:10px;align-items:center}
-  .pill{
-    padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
-    color:var(--text);font-weight:600;cursor:pointer;
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4)), inset -4px -4px 10px rgba(255,255,255,0.02);
-  }
-  .pill.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);font-weight:600}
-
-  /* hero section */
-  .hero{
-    display:grid;
-    grid-template-columns: 1fr 320px;
-    gap:20px;
-    align-items:stretch;
-  }
-
-  .hero-card{
-    border-radius:20px;
-    padding:22px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
-    border:1px solid rgba(255,255,255,0.03);
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4);
-    position:relative;
-    overflow:hidden;
-  }
-
-  .hero-card:before{
-    /* subtle decorative rounded shape like example */
-    content:"";
-    position:absolute;
-    right:-120px;top:-60px;width:420px;height:420px;border-radius:50%;
-    background: radial-gradient(circle at 30% 30%, rgba(183,255,59,0.06), transparent 35%);
-    transform:rotate(-20deg);
-    pointer-events:none;
-  }
-
-  .hero-text h2{margin:0;font-size:1.6rem;color:var(--text)}
-  .hero-text p{color:var(--muted);margin-top:10px;line-height:1.45}
-
-  .stat-block{
-    margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;
-  }
-  .stat{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
-    padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
-    min-width:110px;text-align:center;
-    box-shadow: inset -6px -6px 14px rgba(255,255,255,0.02), 8px 10px 24px rgba(0,0,0,0.45);
-  }
-  .stat strong{display:block;font-size:1.05rem;color:var(--accent-lime)}
-  .stat small{display:block;color:var(--muted);margin-top:6px;font-size:0.8rem}
-
-  /* side card */
-  .side-card{
-    border-radius:16px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
-    border:1px solid rgba(255,255,255,0.03);
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4);
-  }
-  .side-card h3{margin:0 0 8px 0;color:var(--accent-lime)}
-  .side-card p{color:var(--muted);font-size:0.9rem}
-
-  /* main panel with filters and table (glass + neumorphic rows) */
-  .main-panel{
-    border-radius:20px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-    border:1px solid rgba(255,255,255,0.03);
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4);
-  }
-
-  .controls{
-    display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-bottom:16px;
-  }
-  .controls .control{
-    min-width:160px;
-  }
-  label{display:block;color:var(--muted);font-size:0.85rem;margin-bottom:6px}
-
-  input[type="text"], select{
-    width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
-    color:var(--text);outline:none;font-size:0.95rem;
-    box-shadow: inset -6px -6px 12px rgba(255,255,255,0.02), 8px 10px 22px rgba(0,0,0,0.45);
-    backdrop-filter: blur(6px);
-  }
-  input[type="text"]:focus, select:focus{box-shadow:0 0 12px var(--accent-lime)}
-
-  /* table style as card rows (neumorphic) */
-  table {
-    width:100%;
-    border-collapse:separate;
-    border-spacing:0 12px;
-  }
-  thead th{color:var(--accent-lime);font-weight:700;padding:12px 14px;text-align:left;font-size:0.95rem}
-  tbody tr{
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.08));
-    border-radius:12px;
-    box-shadow: 6px 8px 18px rgba(0,0,0,0.4), inset -6px -6px 12px rgba(255,255,255,0.02);
-    transform-origin:center;
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-  tbody tr:hover{transform: translateY(-6px); box-shadow: 6px 8px 18px rgba(0,0,0,0.4)}
-  tbody td{
-    padding:14px 16px;border-bottom:none;border-top:none;color:var(--text);
-    vertical-align:middle;font-size:0.95rem;
-  }
-
-  .stars {
-    display:inline-flex;gap:6px;align-items:center;font-size:0.95rem;
-  }
-
-  /* small badges */
-  .badge{
-    display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(180deg,var(--accent-soft), rgba(255,255,255,0.01));
-    color:var(--text);font-weight:700;border:1px solid rgba(255,255,255,0.03);font-size:0.85rem;
-    box-shadow: inset -4px -4px 8px rgba(255,255,255,0.02);
-  }
-
-  /* footer */
-  footer.page-foot{
-    text-align:center;color:var(--muted);font-size:0.9rem;padding:18px;border-radius:12px;background:transparent;
-  }
-
-  /* responsive */
-  @media (max-width:980px){
-    .hero{grid-template-columns:1fr}
-    .page{padding:12px}
-  }
-
-  @media (max-width:560px){
-    .controls{flex-direction:column;align-items:stretch}
-    .header-actions{flex-wrap:wrap}
-    .logo-circle{width:48px;height:48px}
-  }
-  
+  * { box-sizing: border-box; }
   body {
-  background: var(--bg-deep);
-}
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding: 20px;
+    transition: background 0.5s ease;
+  }
 
-.hero-card,
-.side-card,
-.main-panel,
-header.main-header {
-  box-shadow: none !important;
-  background: rgba(255,255,255,0.03) !important;
-}
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-  /* 🔧 Corrige fundo e elimina faixas escuras */
-body {
-  background-color: var(--bg-deep) !important;
-  background-image: none !important;
-}
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+  }
 
-/* Remove o degradê escuro das linhas da tabela */
-tbody tr {
-  background: rgba(255, 255, 255, 0.03) !important;
-  box-shadow: none !important;
-}
+  .brand h1 { margin: 0; font-size: 1.5rem; color: var(--accent-pink); }
+  
+  .header-actions { display: flex; gap: 15px; align-items: center; }
+  
+  select, input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--card-border);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+  }
 
-/* Clareia cartões para manter contraste */
-.hero-card,
-.side-card,
-.main-panel,
-header.main-header {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: none !important;
-}
+  select:focus, input:focus {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 10px rgba(255, 46, 99, 0.3);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .stat-card:hover { transform: translateY(-5px); }
+  .stat-card i { font-size: 2rem; display: block; margin-bottom: 10px; }
+  .stat-card strong { font-size: 2rem; display: block; color: var(--accent-pink); }
+  .stat-card span { color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+  .top-performances {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+  }
+  .top-performances h2 { margin-top: 0; color: var(--accent-pink); font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  
+  .top-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .top-item {
+    background: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-pink);
+    transition: 0.3s;
+  }
+  .top-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--accent-lime);
+  }
+  .top-item .song-name { font-weight: bold; display: block; margin-bottom: 5px; }
+  .top-item .song-score { color: var(--accent-pink); font-size: 1.1rem; }
+
+  .main-content {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .filter-group { flex: 1; }
+  .filter-group label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+  .filter-group input, .filter-group select { width: 100%; }
+
+  .filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .btn-reset {
+    background: rgba(255, 46, 99, 0.2);
+    border: 1px solid var(--accent-pink);
+    color: var(--accent-pink);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+  }
+  .btn-reset:hover {
+    background: var(--accent-pink);
+    color: white;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th { text-align: left; padding: 15px; color: var(--muted); font-size: 0.9rem; border-bottom: 1px solid var(--card-border); }
+  td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  tr:hover { background: rgba(255,255,255,0.02); cursor: pointer; }
+
+  .stars { color: #ffd700; }
+
+  .results-info {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  /* Overlay de Senha */
+  #senhaOverlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 10, 25, 0.95);
+    backdrop-filter: blur(15px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+  }
+  .senha-box {
+    background: #1a1a2e;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    border: 1px solid var(--accent-pink);
+    box-shadow: 0 0 30px rgba(255, 46, 99, 0.2);
+    max-width: 400px; width: 90%;
+  }
+  .senha-box h2 { color: white; margin-bottom: 20px; }
+  .senha-box input { width: 100%; padding: 15px; margin-bottom: 20px; font-size: 1.2rem; text-align: center; }
+  .senha-box button {
+    background: var(--accent-pink);
+    color: white; border: none; padding: 12px 30px;
+    border-radius: 50px; font-weight: bold; cursor: pointer;
+    transition: 0.3s;
+  }
+  .senha-box button:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-pink); }
+  #senhaErro { color: #ff4d4d; margin-top: 10px; display: none; }
+
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    header { flex-direction: column; gap: 15px; }
+    .filters { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-  <div class="page">
 
-    <!-- Header -->
-    <header class="main-header" role="banner">
-      <div class="brand">
-        <div class="logo-circle">🎵</div>
-        <div class="title-area">
-          <h1>🎵 Placar Just Dance da Mirelly 🎵</h1>
-          <p>Registra suas melhores pontuações — atualizado automaticamente</p>
-        </div>
-        <div style="margin-top:8px;">
-</div>
-      </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero" aria-label="Destaque">
-      <div class="hero-card" aria-hidden="false">
-        <div class="hero-text">
-          <h2>Placar & Destaques</h2>
-          <p>Lista completa de músicas, versões e suas pontuações. Use os filtros para encontrar músicas por nome ou por quantidade de estrelas.</p>
-
-          <div class="stat-block">
-            <div class="stat">
-              <strong id="totalSongs">—</strong>
-              <small>Total de músicas</small>
-            </div>
-            <div class="stat">
-              <strong id="avgScore">—</strong>
-              <small>Melhor Pontuação</small>
-            </div>
-            <div class="stat">
-              <strong id="topStar">—</strong>
-              <small>Melhor estrela</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="side-card" aria-label="Informações rápidas">
-        <h3>Como usar</h3>
-        <p>Escolha o número mínimo de estrelas e/ou digite parte do nome da música. A tabela abaixo será atualizada automaticamente.</p>
-        <div style="margin-top:14px">
-          <div class="badge">Sincronização: planilha pública</div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- Main panel: filtros + tabela -->
-    <main class="main-panel" role="main" aria-labelledby="tabela-title">
-      <h2 id="tabela-title" style="margin:0 0 12px 0;color:var(--muted);font-size:1.05rem">Placar</h2>
-
-      <div class="controls" role="region" aria-label="Controles de filtro">
-        <div class="control">
-          <label for="filtroEstrelas">Filtro por estrelas mínimas</label>
-          <select id="filtroEstrelas" aria-controls="tabela">
-            <option value="0">Todas</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-
-        <div class="control" style="flex:1">
-          <label for="buscaMusica">Buscar música</label>
-          <input id="buscaMusica" type="text" placeholder="Galway girl, Uptown funk..." aria-label="Buscar música" />
-        </div>
-
-        <div style="min-width:140px">
-          <label>&nbsp;</label>
-          <button id="refreshBtn" class="pill" style="width:100%;background:linear-gradient(90deg,var(--accent-lime),var(--accent-lime)); color:#1a1a1a">Atualizar</button>
-        </div>
-      </div>
-
-      <div style="overflow:auto">
-        <table id="tabela" aria-live="polite" role="table">
-          <thead>
-            <tr>
-              <th scope="col">Música</th>
-              <th scope="col">Versão</th>
-              <th scope="col">Pontuação</th>
-              <th scope="col">Estrelas</th>
-              <th scope="col">Jogo</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-    </main>
-
-    <footer class="page-foot">
-      Atualiza automaticamente com base na planilha do Lele 💃 · Feito com carinho
-    </footer>
-
+<div id="senhaOverlay">
+  <div class="senha-box">
+    <h2>Acesso Restrito</h2>
+    <input type="password" id="senhaInput" placeholder="Digite a senha...">
+    <button id="senhaBtn">Entrar</button>
+    <p id="senhaErro">Senha incorreta!</p>
   </div>
+</div>
+
+<div class="container">
+  <header>
+    <div class="brand">
+      <h1>🎵 Placar Just Dance</h1>
+    </div>
+    <div class="header-actions">
+      <select id="themeSelect">
+        <option value="default">Tema: Cyberpunk</option>
+        <option value="verde">Tema: Esmeralda</option>
+        <option value="roxo">Tema: Ametista</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span id="totalSongs">0</span>
+      <span>Músicas</span>
+    </div>
+    <div class="stat-card">
+      <span id="avgScore">0</span>
+      <span>Maior Pontuação</span>
+    </div>
+    <div class="stat-card">
+      <span id="topStar">—</span>
+      <span>Máximo de Estrelas</span>
+    </div>
+  </div>
+
+  <section class="top-performances">
+    <h2>🏆 Top 10 Performances</h2>
+    <div id="top10List" class="top-list">
+      <!-- Inserido via JS -->
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="filters">
+      <div class="filter-group">
+        <label>🔍 Buscar Música</label>
+        <input type="text" id="buscaMusica" placeholder="Ex: Heart of Glass...">
+      </div>
+      <div class="filter-group">
+        <label>📀 Versão</label>
+        <select id="filtroVersao">
+          <option value="">Todas as Versões</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>⭐ Pontuação (Estrelas)</label>
+        <select id="filtroPontuacao">
+          <option value="">Todas as Pontuações</option>
+          <option value="1">1 Estrela</option>
+          <option value="2">2 Estrelas</option>
+          <option value="3">3 Estrelas</option>
+          <option value="4">4 Estrelas</option>
+          <option value="5">5 Estrelas</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>🎮 Jogo</label>
+        <select id="filtroJogo">
+          <option value="">Todos os Jogos</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn-reset" id="btnLimpar">🔄 Limpar Filtros</button>
+    </div>
+
+    <div class="results-info">
+      Exibindo <strong id="resultCount">0</strong> de <strong id="totalCount">0</strong> músicas
+    </div>
+
+    <div style="overflow-x: auto;">
+      <table id="tabela">
+        <thead>
+          <tr>
+            <th>Música</th>
+            <th>Versão</th>
+            <th>Pontuação</th>
+            <th>Estrelas</th>
+            <th>Jogo</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem;">
+    Just Dance Scoreboard &copy; 2026 · LeleNY
+  </footer>
+</div>
 
 <script>
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj-vi4yIXhToerEJg6xTZW9JgvtRDARTxpx7KUWoaV8kJMvwT7DTmDHA4tKVPZ3r2QYZnia22jDhCS/pub?output=csv";
@@ -410,128 +365,165 @@ function detectColumns(headers) {
   };
 }
 
-/* render tabela */
+function countStars(estrelasStr) {
+  if (!estrelasStr) return 0;
+  const stars = estrelasStr.match(/[💚🩷🩵💛⭐🌟★]/g);
+  return stars ? stars.length : 0;
+}
+
+function renderTop10(dados, cols) {
+  const top10 = [...dados]
+    .map(d => {
+      const score = parseFloat((d[cols.pontuacao] || "").replace(/[^\d.,]/g, "").replace(",", "."));
+      return { ...d, scoreVal: isNaN(score) ? 0 : score };
+    })
+    .sort((a, b) => b.scoreVal - a.scoreVal)
+    .slice(0, 10);
+
+  const container = document.getElementById("top10List");
+  container.innerHTML = top10.map(d => `
+    <div class="top-item">
+      <span class="song-name">${d[cols.musica]}</span>
+      <span class="song-score">${d[cols.pontuacao]}</span>
+    </div>
+  `).join("");
+}
+
 function exibirTabela(dados, cols) {
   const tbody = document.querySelector("#tabela tbody");
   tbody.innerHTML = "";
+  
+  document.getElementById("resultCount").textContent = dados.length;
+  document.getElementById("totalCount").textContent = ALL_DATA.length;
 
   dados.forEach(d => {
     const tr = document.createElement("tr");
-    const estrelasRaw = (cols.estrelas ? (d[cols.estrelas] || "") : "").replace(/\s+/g, " ").trim();
-
     tr.innerHTML = `
       <td>${d[cols.musica] || ""}</td>
       <td>${d[cols.versao] || ""}</td>
       <td>${d[cols.pontuacao] || ""}</td>
-      <td>${estrelasRaw}</td>
+      <td class="stars">${d[cols.estrelas] || ""}</td>
       <td>${d[cols.jogo] || ""}</td>
     `;
-
-    // clique abre a wiki em nova aba
-    const musicaNome = (d[cols.musica] || "").trim();
-    if (musicaNome) {
-      const slug = musicaNome
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, "_")
-        .replace(/[^\w\-_.]/g, "");
-      const urlWiki = "https://justdance.fandom.com/wiki/" + encodeURIComponent(slug);
-
-      tr.style.cursor = "pointer";
-      tr.addEventListener("click", () => {
-        window.open(urlWiki, "_blank");
-      });
-    }
-
+    tr.onclick = () => {
+      const slug = (d[cols.musica] || "").trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "_").replace(/[^\w\-_.]/g, "");
+      window.open("https://justdance.fandom.com/wiki/" + encodeURIComponent(slug), "_blank");
+    };
     tbody.appendChild(tr);
   });
 }
 
-function highestScore(dados, cols) {
-  if (!cols.pontuacao) return null;
-  const numeros = dados.map(d => {
-    const valor = (d[cols.pontuacao] || "").replace(/[^\d.,]/g, "").replace(",", ".");
-    return parseFloat(valor);
-  }).filter(v => !isNaN(v));
-  if (!numeros.length) return null;
-  const max = Math.max(...numeros);
-  return Math.round(max);
-}
+function updateStats(dados, cols) {
+  document.getElementById("totalSongs").textContent = dados.length;
+  
+  const scores = dados.map(d => parseFloat((d[cols.pontuacao] || "").replace(/[^\d.,]/g, "").replace(",", "."))).filter(v => !isNaN(v));
+  document.getElementById("avgScore").textContent = scores.length ? Math.max(...scores).toLocaleString() : "0";
 
-function highestStar(dados, cols) {
-  if (!cols.estrelas) return null;
-  let max = 0;
+  let maxStars = "";
   dados.forEach(d => {
-    const s = (d[cols.estrelas] || "").match(/[💚🩷🩵💛⭐🌟]/g);
-    const n = s ? s.length : parseInt((d[cols.estrelas] || "").replace(/\D/g, "")) || 0;
-    if (n > max) max = n;
+    const s = d[cols.estrelas] || "";
+    if (countStars(s) > countStars(maxStars)) maxStars = s;
   });
-  return max ? "★".repeat(Math.min(max, 5)) : "—";
+  document.getElementById("topStar").textContent = maxStars || "—";
 }
 
+function preencherFiltros(dados, cols) {
+  const versoes = new Set();
+  const jogos = new Set();
 
-/* filtro */
+  dados.forEach(d => {
+    if (d[cols.versao]) versoes.add(d[cols.versao]);
+    if (d[cols.jogo]) jogos.add(d[cols.jogo]);
+  });
+
+  const selectVersao = document.getElementById("filtroVersao");
+  const selectJogo = document.getElementById("filtroJogo");
+
+  Array.from(versoes).sort().forEach(v => {
+    const option = document.createElement("option");
+    option.value = v;
+    option.textContent = v;
+    selectVersao.appendChild(option);
+  });
+
+  Array.from(jogos).sort().forEach(j => {
+    const option = document.createElement("option");
+    option.value = j;
+    option.textContent = j;
+    selectJogo.appendChild(option);
+  });
+}
+
 function aplicarFiltros() {
-  const min = parseInt(document.querySelector("#filtroEstrelas").value);
-  const busca = document.querySelector("#buscaMusica").value.toLowerCase();
-  const filtrado = ALL.filter(d => {
-    const estrelasRaw = (d[cols.estrelas] || "");
-    const temEstrela = estrelasRaw.match(/[💚🩷🩵💛]/g);
-    const num = temEstrela ? temEstrela.length : 0;
-    const nome = (d[cols.musica] || "").toLowerCase();
-    return num >= min && nome.includes(busca);
+  const busca = document.getElementById("buscaMusica").value.toLowerCase();
+  const versao = document.getElementById("filtroVersao").value;
+  const pontuacao = document.getElementById("filtroPontuacao").value;
+  const jogo = document.getElementById("filtroJogo").value;
+
+  const filtered = ALL_DATA.filter(d => {
+    const nomeMatch = (d[COLS.musica] || "").toLowerCase().includes(busca);
+    const versaoMatch = !versao || (d[COLS.versao] || "") === versao;
+    const jogoMatch = !jogo || (d[COLS.jogo] || "") === jogo;
+    const pontuacaoMatch = !pontuacao || countStars(d[COLS.estrelas]) === parseInt(pontuacao);
+
+    return nomeMatch && versaoMatch && jogoMatch && pontuacaoMatch;
   });
-  exibirTabela(filtrado, cols);
+
+  exibirTabela(filtered, COLS);
 }
 
-let ALL = [];
-let cols = null;
+let ALL_DATA = [];
+let COLS = {};
 
-(async function init() {
+async function init() {
   const { headers, dados } = await carregarDados();
-  ALL = dados;
-  cols = detectColumns(headers);
-  exibirTabela(ALL, cols);
+  ALL_DATA = dados;
+  COLS = detectColumns(headers);
+  
+  updateStats(ALL_DATA, COLS);
+  preencherFiltros(ALL_DATA, COLS);
+  renderTop10(ALL_DATA, COLS);
+  exibirTabela(ALL_DATA, COLS);
+}
 
-  // 🔽 Atualiza os cards de estatísticas
-  document.getElementById("totalSongs").textContent = ALL.length;
-  document.getElementById("avgScore").textContent = highestScore(ALL, cols) || "—";
-  document.getElementById("topStar").textContent = highestStar(ALL, cols) || "—";
-})();
+document.getElementById("buscaMusica").oninput = aplicarFiltros;
+document.getElementById("filtroVersao").onchange = aplicarFiltros;
+document.getElementById("filtroPontuacao").onchange = aplicarFiltros;
+document.getElementById("filtroJogo").onchange = aplicarFiltros;
 
-// 🔁 Filtros reativos
-document.querySelector("#filtroEstrelas").addEventListener("change", aplicarFiltros);
-document.querySelector("#buscaMusica").addEventListener("input", aplicarFiltros);
-
-// 🎨 Temas disponíveis — cada um com cor principal e fundo escuro próprio
-const temas = {
-  verde: {
-    cor: "#FC578B",
-    fundo1: "#672B45",
-    fundo2: "#852137",
-    fundo3: "#9A3B18"
-  },
+document.getElementById("btnLimpar").onclick = () => {
+  document.getElementById("buscaMusica").value = "";
+  document.getElementById("filtroVersao").value = "";
+  document.getElementById("filtroPontuacao").value = "";
+  document.getElementById("filtroJogo").value = "";
+  exibirTabela(ALL_DATA, COLS);
 };
 
-function aplicarTema(nome) {
-  const tema = temas[nome] || temas.verde;
-  document.documentElement.style.setProperty("--accent-lime", tema.cor);
-  document.documentElement.style.setProperty("--bg-deep", tema.fundo1);
-  document.documentElement.style.setProperty("--bg-mid", tema.fundo2);
-  document.documentElement.style.setProperty("--bg-low", tema.fundo3);
+// Senha
+const senhaCorreta = "bluecooky";
+document.getElementById("senhaBtn").onclick = () => {
+  if (document.getElementById("senhaInput").value === senhaCorreta) {
+    document.getElementById("senhaOverlay").style.display = "none";
+  } else {
+    document.getElementById("senhaErro").style.display = "block";
+  }
+};
 
-  document.body.style.background = `var(--bg-deep)`;
+// Temas
+const temas = {
+  default: { pink: "#ff2e63", deep: "#1a1a2e", mid: "#16213e" },
+  verde: { pink: "#bfff3b", deep: "#1b2e1a", mid: "#1e3e16" },
+  roxo: { pink: "#c39bff", deep: "#2e1a2e", mid: "#3e163e" }
+};
 
-  const select = document.getElementById("themeSelect");
-  select.style.color = tema.cor;
-  select.style.borderColor = tema.cor;
-}
+document.getElementById("themeSelect").onchange = (e) => {
+  const t = temas[e.target.value];
+  document.documentElement.style.setProperty("--accent-pink", t.pink);
+  document.documentElement.style.setProperty("--bg-deep", t.deep);
+  document.documentElement.style.setProperty("--bg-mid", t.mid);
+};
 
-document.getElementById("themeSelect").addEventListener("change", (e) => {
-  aplicarTema(e.target.value);
-});
-
-aplicarTema("verde");
+init();
 </script>
 </body>
 </html>
